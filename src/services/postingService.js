@@ -16,6 +16,18 @@ class PostingService {
       return newPosting;
     } catch (error) {}
   }
+
+  async updatePosting(dto) {
+    const { postingId, ...rest } = dto;
+    try {
+      const updatedRowCount = await postingRepository.update({
+        id: postingId,
+        ...rest,
+      });
+
+      return updatedRowCount;
+    } catch (error) {}
+  }
 }
 
 const postingService = new PostingService();
