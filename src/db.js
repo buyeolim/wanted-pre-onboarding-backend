@@ -24,7 +24,7 @@ connect2Database();
 
 // 테이블 생성
 sequelize
-  .sync({ force: true }) // force | alter
+  .sync({ alter: true }) // force | alter
   .then(() => {
     console.log('🟢 All models were synchronized successfully.');
   })
