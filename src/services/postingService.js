@@ -40,6 +40,14 @@ class PostingService {
       return deletedRowCount;
     } catch (error) {}
   }
+
+  async getAllPostings() {
+    try {
+      const postings = await postingRepository.findAll();
+
+      return postings;
+    } catch (error) {}
+  }
 }
 
 const postingService = new PostingService();

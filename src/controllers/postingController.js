@@ -54,7 +54,7 @@ class PostingController {
         throw new Error('잘못된 요청입니다.');
       }
 
-      const deletedRowCount = postingService.deletePosting({
+      const deletedRowCount = await postingService.deletePosting({
         postingId: +postingId,
       });
       if (!deletedRowCount) {
@@ -62,6 +62,17 @@ class PostingController {
       }
 
       return res.status(204).json({ msg: '채공공고가 삭제되었습니다.' });
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ msg: 'Bad Request', err: error.message });
+    }
+  }
+
+  async getAllPostings(req, res) {
+    try {
+      const postings = await postingService.getAllPostings();
+
+      return res.status(200).json(postings);
     } catch (error) {
       console.log(error);
       return res.status(400).json({ msg: 'Bad Request', err: error.message });

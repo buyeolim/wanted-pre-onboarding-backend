@@ -18,4 +18,9 @@ postingRouter.put('/:postingId', postingController.updatePosting);
  */
 postingRouter.delete('/:postingId', postingController.deletePosting);
 
+/*
+ * 채용공고 목록 조회
+ */
+postingRouter.get('/', postingController.getAllPostings);
+
 export default postingRouter;

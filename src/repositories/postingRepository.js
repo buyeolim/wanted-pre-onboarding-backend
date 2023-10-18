@@ -48,6 +48,16 @@ class PostingRepository {
       throw error;
     }
   }
+
+  async findAll() {
+    try {
+      const results = await Posting.findAll();
+
+      return results;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 const postingRepository = new PostingRepository();
