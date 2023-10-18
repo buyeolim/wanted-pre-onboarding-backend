@@ -28,6 +28,18 @@ class PostingService {
       return updatedRowCount;
     } catch (error) {}
   }
+
+  async deletePosting(dto) {
+    try {
+      const { postingId } = dto;
+
+      const deletedRowCount = await postingRepository.delete({
+        id: postingId,
+      });
+
+      return deletedRowCount;
+    } catch (error) {}
+  }
 }
 
 const postingService = new PostingService();

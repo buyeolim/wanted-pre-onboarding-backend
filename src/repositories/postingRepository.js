@@ -1,3 +1,4 @@
+import { Sequelize } from 'sequelize';
 import Posting from '../models/Posting';
 
 class PostingRepository {
@@ -24,6 +25,23 @@ class PostingRepository {
           id: dto.id,
         },
       });
+
+      return results[0];
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async delete(dto) {
+    try {
+      const results = await Posting.update(
+        { deletedAt: Sequelize.literal('NOW()') },
+        {
+          where: {
+            id: dto.id,
+          },
+        },
+      );
 
       return results[0];
     } catch (error) {
