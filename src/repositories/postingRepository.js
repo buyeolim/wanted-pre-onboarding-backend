@@ -58,6 +58,17 @@ class PostingRepository {
       throw error;
     }
   }
+
+  async findOne(dto) {
+    try {
+      const { id } = dto;
+      const results = await Posting.findByPk(id);
+
+      return results;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 const postingRepository = new PostingRepository();

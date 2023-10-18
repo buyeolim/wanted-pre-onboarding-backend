@@ -78,6 +78,23 @@ class PostingController {
       return res.status(400).json({ msg: 'Bad Request', err: error.message });
     }
   }
+
+  async getPosting(req, res) {
+    try {
+      const { postingId } = req.params;
+      if (!postingId) {
+        throw new Error('잘못된 요청입니다.');
+      }
+      const posting = await postingService.getPosting({
+        postingId: +postingId,
+      });
+
+      return res.status(200).json(posting);
+    } catch (error) {
+      console.log(error);
+      return res.status(400).json({ msg: 'Bad Request', err: error.message });
+    }
+  }
 }
 
 const postingController = new PostingController();

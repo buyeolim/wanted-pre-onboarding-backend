@@ -48,6 +48,15 @@ class PostingService {
       return postings;
     } catch (error) {}
   }
+
+  async getPosting(dto) {
+    try {
+      const { postingId } = dto;
+      const posting = await postingRepository.findOne({ id: postingId });
+
+      return posting;
+    } catch (error) {}
+  }
 }
 
 const postingService = new PostingService();
